@@ -1,0 +1,33 @@
+{% extends 'layout.html'%}
+
+{% from 'helpers/_forms.html' import render_field %}
+{% block container%}
+<div class="d-inline-block">
+    <h3>Tareas</h3>
+    <a href="{{ url_for('.new_task')}}">Registrar tareas</a>
+</div>
+<div class="col-md-12 col-mdoffset-1">
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in task %}
+                <tr>
+                    <td>{{t.title}}</td>
+                    <td>{{t.description}}</td>
+                    <td><a href="{{ url_for('.edit_task', task_id=t.id)}}" class="btn btn-primary">Editar</a>
+                    <a href="{{ url_for('.delete_task', task_id=t.id)}}" class="btn btn-danger">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+
+</div>
+{% endblock%}
